@@ -39,4 +39,11 @@
 	<scm>
 		<url>https://github.com/Zoostar-Consulting-Inc/zoostar-boot-starter-parent</url>
 	</scm>
+	<issueManagement>
+		<system>JIRA</system>
+		<url>https://zoostar.atlassian.net/jira/software/projects/ZBSP</url>
+	</issueManagement>
+	<organization>
+		<name>Zoostar Consulting, Inc.</name>
+	</organization>
 </project>
