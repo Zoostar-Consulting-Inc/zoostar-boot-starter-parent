@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<springProperty name="LOGS_BASE_DIR" source="logs.base.dir" defaultValue="." />
+	<property name="LOGS" value="${LOGS_BASE_DIR}/logs" />
+
+	<appender name="Console"
+		class="ch.qos.logback.core.ConsoleAppender">
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>%d{ISO8601} [%t] %-5level %logger{36}: %msg%n</pattern>
+		</layout>
+	</appender>
+
+	<appender name="AppRollingFile"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${LOGS}/app.log</file>
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<!-- rollover daily -->
+			<fileNamePattern>${LOGS}/app-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+			<maxHistory>30</maxHistory>
+			<maxFileSize>1MB</maxFileSize>
+			<totalSizeCap>10MB</totalSizeCap>
+		</rollingPolicy>
+		<encoder
+			class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>%d{ISO8601} [%t] %-5level %logger{36}: %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<!-- LOG everything at INFO level -->
+	<root level="info">
+		<appender-ref ref="Console" />
+	</root>
+
+	<logger level="debug" additivity="false" name="net.zoostar">
+		<appender-ref ref="Console" />
+		<appender-ref ref="AppRollingFile" />
+	</logger>
+
+</configuration>
