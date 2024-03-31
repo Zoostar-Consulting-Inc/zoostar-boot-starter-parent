@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration>
 <configuration>
-	<springProperty name="LOGS_BASE_DIR" source="logs.base.dir" defaultValue="." />
-	<property name="LOGS" value="${LOGS_BASE_DIR}/logs" />
+	<springProperty name="LOGS_BASE_DIR" source="logs.base.dir" defaultValue="${catalina.base}/logs" />
+	<property name="LOGS" value="${LOGS_BASE_DIR}" />
 
 	<appender name="Console"
 		class="ch.qos.logback.core.ConsoleAppender">
 		<layout class="ch.qos.logback.classic.PatternLayout">
-			<pattern>%d{ISO8601} [%t] %-5level %logger{24}: %msg%n</pattern>
+			<pattern>%d{ISO8601} [%t] %-5level %logger{36}: %msg%n</pattern>
 		</layout>
 	</appender>
 
 	<appender name="AppRollingFile"
 		class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file>${LOGS}/app.log</file>
+		<file>${LOGS}/@project.build.finalName@.log</file>
 		<rollingPolicy
 			class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
 			<!-- rollover daily -->
-			<fileNamePattern>${LOGS}/app-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
-			<maxHistory>30</maxHistory>
-			<maxFileSize>1MB</maxFileSize>
-			<totalSizeCap>10MB</totalSizeCap>
+			<fileNamePattern>${LOGS}/archive/@project.build.finalName@-%d{yyyy-MM-dd}.%i-log.gz</fileNamePattern>
+			<maxHistory>90</maxHistory>
+			<maxFileSize>10MB</maxFileSize>
 		</rollingPolicy>
 		<encoder
 			class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
@@ -30,9 +30,21 @@
 	<!-- LOG everything at INFO level -->
 	<root level="info">
 		<appender-ref ref="Console" />
+		<appender-ref ref="AppRollingFile" />
 	</root>
 
-	<logger level="debug" additivity="false" name="net.zoostar">
+	<logger level="debug" additivity="false" name="gov.census">
+		<appender-ref ref="Console" />
+		<appender-ref ref="AppRollingFile" />
+	</logger>
+
+	<logger level="debug" additivity="false" name="org.springframework.jdbc.core">
+		<appender-ref ref="Console" />
+		<appender-ref ref="AppRollingFile" />
+	</logger>
+
+	<logger level="trace" additivity="false"
+		name="org.springframework.data.elasticsearch.client.WIRE">
 		<appender-ref ref="Console" />
 		<appender-ref ref="AppRollingFile" />
 	</logger>

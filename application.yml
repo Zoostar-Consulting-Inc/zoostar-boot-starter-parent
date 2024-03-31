@@ -1,0 +1,9 @@
+spring:
+  profiles:
+    active:
+      - local
+
+request:
+  tracker:
+    exclusion:
+      patterns: /actuator, /error, /swagger-ui/**, /swagger-ui.html, /v3/api-docs/**
