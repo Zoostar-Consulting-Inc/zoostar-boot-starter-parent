@@ -117,4 +117,7 @@
 	<organization>
 		<name>Zoostar Consulting, Inc.</name>
 	</organization>
+	<modules>
+		<module>common</module>
+	</modules>
 </project>
