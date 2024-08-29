@@ -1,0 +1,12 @@
+{"properties": [
+  {
+    "name": "logs.base.dir",
+    "type": "java.lang.String",
+    "description": "Logs directory configuration. Can take relative or actual path."
+  },
+  {
+    "name": "request.tracker.exclusion.patterns",
+    "type": "java.lang.String",
+    "description": "API Request exclusion pattern configuration"
+  }
+]}
