@@ -5,18 +5,18 @@ pipeline {
     	stage('Environment') {
             steps {
                 echo "Using environment:"
-                echo "Source branch: ${env.BRANCH_NAME}"
-                echo "Target branch: ${env.CHANGE_TARGET}"
+                echo "Source branch: $BRANCH_NAME"
+                echo "Target branch: $CHANGE_TARGET"
             }
         }
         
         stage('Verify') {
 			steps {
 				script {
-					if(env.CHANGE_TARGET == 'develop') {
+					if($CHANGE_TARGET == 'develop') {
 						echo "mvn -B verify"
 					} else {
-						echo "fail: env.CHANGE_TARGET"
+						echo "fail: $CHANGE_TARGET"
 					}
 				}
 			}
