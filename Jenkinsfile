@@ -8,7 +8,7 @@ pipeline {
                 echo "Target branch: ${env.CHANGE_TARGET}"
             }
         }
-        if($env.CHANGE_BRANCH == 'develop') {
+        if(${env.CHANGE_BRANCH} == 'develop') {
 	        stage('verify') {
 	            steps {
 	                bat 'mvn -B verify'
