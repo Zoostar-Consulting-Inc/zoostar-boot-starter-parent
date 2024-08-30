@@ -16,7 +16,7 @@ pipeline {
 					if(env.CHANGE_TARGET == 'develop') {
 						echo "mvn -B verify"
 					} else {
-						echo "fail"
+						echo "fail: env.CHANGE_TARGET"
 					}
 				}
 			}
