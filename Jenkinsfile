@@ -4,18 +4,22 @@ pipeline {
     	stage('Environment') {
             steps {
                 echo "Using environment:"
-                echo "Building branch: ${env.GIT_BRANCH}"
+                echo "Source branch: ${env.BRANCH_NAME}"
+                echo "Target branch: ${env.CHANGE_TARGET}"
             }
         }
-        stage('Install') {
-            steps {
-                echo 'mvn -B install'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                bat 'mvn -B deploy'
-            }
+        if(env.CHANGE_BRANCH == 'develop') {
+	        stage('verify') {
+	            steps {
+	                bat 'mvn -B verify'
+	            }
+	        }
+        } else {
+	        stage('Deploy') {
+	            steps {
+	                echo 'mvn -B deploy'
+	            }
+	        }
         }
     }
 }
