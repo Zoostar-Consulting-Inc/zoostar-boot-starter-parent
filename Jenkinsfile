@@ -1,25 +1,9 @@
-pipeline {
-	agent any
-   	stages {
-    	stage('Environment') {
-            steps {
-                echo "Using environment:"
-                echo "Source branch: ${env.BRANCH_NAME}"
-                echo "Target branch: ${env.CHANGE_TARGET}"
-            }
-        }
-        if(${env.CHANGE_BRANCH} == 'develop') {
-	        stage('verify') {
-	            steps {
-	                bat 'mvn -B verify'
-	            }
-	        }
+node {
+    stage('Example') {
+        if (env.BRANCH_NAME == 'develop') {
+            echo 'I only execute on the develop branch'
         } else {
-	        stage('Deploy') {
-	            steps {
-	                echo 'mvn -B deploy'
-	            }
-	        }
+            echo 'I execute elsewhere'
         }
     }
 }
