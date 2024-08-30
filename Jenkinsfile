@@ -1,11 +1,26 @@
-node {
-    stage('Build for zoostar') {
-		echo "Building for Branch: ${env.BRANCH_NAME}"
-		echo "Merging into Branch: ${CHANGE_TARGET}"
-        if (env.CHANGE_TARGET == 'develop') {
-            echo "I only execute when merge target is on the develop branch"
-        } else {
-            echo "I execute elsewhere"
+pipeline {
+	agent any
+   	
+   	stages {
+    	stage('Environment') {
+            steps {
+                echo "Using environment:"
+                echo "Source branch: ${env.BRANCH_NAME}"
+                echo "Target branch: ${env.CHANGE_TARGET}"
+            }
         }
+        
+        stage('Verify') {
+			steps {
+				script {
+					if(env.CHANGE_TARGET == 'develop') {
+						echo "mvn -B verify"
+					} else {
+						echo "fail"
+					}
+				}
+			}
+		}
     }
+    
 }
