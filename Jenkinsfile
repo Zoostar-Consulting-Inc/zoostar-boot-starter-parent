@@ -1,6 +1,10 @@
 pipeline {
 	agent any
-   	
+	
+	withEnv(['DEST_BRANCH=$env.CHANGE_TARGET']) {
+		echo 'Target branch: $DEST_BRANCH'
+	}
+	
    	stages {
     	stage('Environment') {
             steps {
