@@ -5,7 +5,7 @@ pipeline {
     	stage('Environment') {
             steps {
                 echo 'Using environment:'
-                echo 'github webhook action: $.payload.number'
+                echo 'github webhook action: $payload.number'
             }
         }
     }
