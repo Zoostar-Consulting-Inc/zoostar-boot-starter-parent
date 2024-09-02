@@ -1,11 +1,6 @@
 pipeline {
 	agent any
 	
-	environment {
-		source = "${pull_request.head.ref}"
-		destination = "${pull_request.base.ref}"
-	}
-	
    	stages {
     	stage('Build') {
             steps {
