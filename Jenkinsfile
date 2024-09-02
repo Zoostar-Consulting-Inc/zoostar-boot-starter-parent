@@ -9,14 +9,13 @@ pipeline {
             }
         }
         stage('Verify') {
-			when {
-				expression {
-					return $destination == "develop"
-				}
-			}
 			steps {
-				step {
-					echo "PASS"
+				script {
+					if($destination == "develop") {
+						echo "PASS"
+					} else {
+						echo "FAIL"
+					}
 				}
 			}
 		}
