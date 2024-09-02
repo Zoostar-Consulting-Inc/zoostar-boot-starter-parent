@@ -4,8 +4,8 @@ pipeline {
    	stages {
     	stage('Build') {
             steps {
-                echo 'Source branch: $source'
-                echo 'Destination branch: $destination'
+                echo "Source branch: $source"
+                echo "Destination branch: $destination"
             }
         }
     }
