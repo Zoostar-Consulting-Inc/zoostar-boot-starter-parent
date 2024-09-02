@@ -8,6 +8,15 @@ pipeline {
                 echo "Destination branch: $destination"
             }
         }
+        stage('Verify') {
+			steps {
+				if($destination == "develop") {
+					echo "PASS"
+				} else {
+					echo "FAIL"
+				}
+			}
+		}
     }
     
 }
