@@ -9,12 +9,12 @@ pipeline {
             }
         }
         stage('Verify') {
-			steps {
-				when {
-					expression {
-						return $destination == "develop"
-					}
+			when {
+				expression {
+					return $destination == "develop"
 				}
+			}
+			steps {
 				step {
 					echo "PASS"
 				}
