@@ -1,11 +1,16 @@
 pipeline {
 	agent any
 	
+	environment {
+		source = "${pull_request.head.ref}"
+		destination = "${pull_request.base.ref}"
+	}
+	
    	stages {
-    	stage('Environment') {
+    	stage('Build') {
             steps {
-                echo 'Using environment:'
-                echo 'github webhook action: $payload.number'
+                echo 'Source branch: $source'
+                echo 'Destination branch: $destination'
             }
         }
     }
