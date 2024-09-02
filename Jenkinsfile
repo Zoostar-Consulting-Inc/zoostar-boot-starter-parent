@@ -10,10 +10,13 @@ pipeline {
         }
         stage('Verify') {
 			steps {
-				if($destination == "develop") {
+				when {
+					expression {
+						return $destination == "develop"
+					}
+				}
+				step {
 					echo "PASS"
-				} else {
-					echo "FAIL"
 				}
 			}
 		}
