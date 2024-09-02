@@ -11,10 +11,10 @@ pipeline {
         stage('Verify') {
 			steps {
 				script {
-					if("$destination" == "develop") {
-						echo "PASS"
-					} else {
+					if("$destination" == "main") {
 						echo "FAIL"
+					} else {
+						echo "PASS"
 					}
 				}
 			}
