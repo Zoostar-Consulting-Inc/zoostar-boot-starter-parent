@@ -13,7 +13,7 @@ pipeline {
         stage('Verify') {
 			steps {
 				script {
-					if("$action" == "opened" || "$action" == "synchronize" || "$refType" == "branch") {
+					if("opened" == "$action" || "synchronize" == "$action" || "branch" == "$refType") {
 						bat 'mvn -B verify'
 					}
 				}
