@@ -11,9 +11,7 @@ pipeline {
         stage('Verify') {
 			steps {
 				script {
-					if("$destination" == "main" && "$source" == "feature/*") {
-						bat 'mvn -B verify'
-					}
+					bat 'mvn -B verify'
 				}
 			}
 		}
