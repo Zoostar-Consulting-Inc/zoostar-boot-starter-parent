@@ -4,6 +4,7 @@ pipeline {
    	stages {
     	stage('Environment') {
             steps {
+				echo "Action: $action"
                 echo "Source branch: $source"
                 echo "Destination branch: $destination"
             }
@@ -11,7 +12,18 @@ pipeline {
         stage('Verify') {
 			steps {
 				script {
-					bat 'mvn -B verify'
+					if("$action" == "open") {
+						bat 'mvn -B verify'
+					}
+				}
+			}
+		}
+        stage('Deploy') {
+			steps {
+				script {
+					if("$action" == "closed") {
+						bat 'mvn -B deploy'
+					}
 				}
 			}
 		}
