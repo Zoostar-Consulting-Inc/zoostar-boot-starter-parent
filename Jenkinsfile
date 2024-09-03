@@ -4,6 +4,7 @@ pipeline {
    	stages {
     	stage('Environment') {
             steps {
+				echo "Ref Type: $refType"
 				echo "Action: $action"
                 echo "Source branch: $source"
                 echo "Destination branch: $destination"
@@ -12,7 +13,7 @@ pipeline {
         stage('Verify') {
 			steps {
 				script {
-					if("$action" == "open") {
+					if("$action" == "open" || "$refType" == "branch") {
 						bat 'mvn -B verify'
 					}
 				}
