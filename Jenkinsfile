@@ -1,21 +1,25 @@
 pipeline {
 	agent any
+	
    	stages {
-    	stage('Environment') {
-            steps {
-                echo "Using environment:"
-                echo "Building branch: ${env.GIT_BRANCH}"
-            }
-        }
-        stage('Install') {
-            steps {
-                echo 'mvn -B install'
-            }
-        }
+        stage('Verify') {
+			steps {
+				script {
+					if("opened" == "$action" || "synchronize" == "$action" || "edited" == "$action" || "branch" == "$refType") {
+						bat 'mvn -B verify'
+					}
+				}
+			}
+		}
         stage('Deploy') {
-            steps {
-                bat 'mvn -B deploy'
-            }
-        }
+			steps {
+				script {
+					if("closed" == "$action") {
+						bat 'mvn -B deploy'
+					}
+				}
+			}
+		}
     }
+    
 }
