@@ -14,7 +14,7 @@ pipeline {
         stage('Deploy') {
 			steps {
 				script {
-					if("$action" == "closed") {
+					if("closed" == "$action") {
 						bat 'mvn -B deploy'
 					}
 				}
