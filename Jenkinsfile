@@ -2,7 +2,7 @@ pipeline {
 	agent any
 	
    	stages {
-    	stage('Build') {
+    	stage('Environment') {
             steps {
                 echo "Source branch: $source"
                 echo "Destination branch: $destination"
