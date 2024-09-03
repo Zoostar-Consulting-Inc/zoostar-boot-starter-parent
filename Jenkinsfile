@@ -1,21 +1,20 @@
 pipeline {
 	agent any
+	
    	stages {
     	stage('Environment') {
             steps {
-                echo "Using environment:"
-                echo "Building branch: ${env.GIT_BRANCH}"
+                echo "Source branch: $source"
+                echo "Destination branch: $destination"
             }
         }
-        stage('Install') {
-            steps {
-                echo 'mvn -B install'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                bat 'mvn -B deploy'
-            }
-        }
+        stage('Verify') {
+			steps {
+				script {
+					bat 'mvn -B verify'
+				}
+			}
+		}
     }
+    
 }
