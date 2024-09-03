@@ -5,7 +5,7 @@ pipeline {
         stage('Verify') {
 			steps {
 				script {
-					if("opened" == "$action" || "synchronize" == "$action" || "branch" == "$refType") {
+					if("opened" == "$action" || "synchronize" == "$action" || "edited" == "$action" || "branch" == "$refType") {
 						bat 'mvn -B verify'
 					}
 				}
