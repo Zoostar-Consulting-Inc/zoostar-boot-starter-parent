@@ -2,16 +2,21 @@ pipeline {
 	agent any
 	
    	stages {
-    	stage('Environment') {
-            steps {
-                echo "Source branch: $source"
-                echo "Destination branch: $destination"
-            }
-        }
         stage('Verify') {
 			steps {
 				script {
-					bat 'mvn -B verify'
+					if("opened" == "$action" || "synchronize" == "$action" || "branch" == "$refType") {
+						bat 'mvn -B verify'
+					}
+				}
+			}
+		}
+        stage('Deploy') {
+			steps {
+				script {
+					if("closed" == "$action") {
+						bat 'mvn -B deploy'
+					}
 				}
 			}
 		}
