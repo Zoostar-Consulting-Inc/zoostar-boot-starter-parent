@@ -15,7 +15,7 @@ pipeline {
 			steps {
 				script {
 					if("closed" == "$action") {
-						bat 'mvn -Dmaven.wagon.http.ssl.insecure=true -Dmaven.wagon.http.ssl.allowall=true -Dmaven.wagon.http.ssl.ignore.validity.dates=true -B deploy'
+						bat 'mvn -B deploy'
 					}
 				}
 			}

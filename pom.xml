@@ -14,12 +14,13 @@
 	</parent>
 	<properties>
 		<java.version>17</java.version>
+		<maven.pvt.repo.url>http://archiva.zoostar.net/repository</maven.pvt.repo.url>
 	</properties>
 	<repositories>
 		<repository>
 			<id>snapshots</id>
 			<name>Archiva Managed Snapshot Repository</name>
-			<url>https://archiva.zoostar.net/repository/snapshots/</url>
+			<url>${maven.pvt.repo.url}/snapshots/</url>
 		<releases>
 				<enabled>false</enabled>
 			</releases>
@@ -30,7 +31,7 @@
 		<repository>
 			<id>internal</id>
 			<name>Archiva Managed Internal Repository</name>
-			<url>https://archiva.zoostar.net/repository/internal/</url>
+			<url>${maven.pvt.repo.url}/internal/</url>
 			<releases>
 				<enabled>true</enabled>
 			</releases>
@@ -43,7 +44,7 @@
 		<pluginRepository>
 			<id>snapshots</id>
 			<name>Archiva Managed Snapshot Repository</name>
-			<url>https://archiva.zoostar.net/repository/snapshots/</url>
+			<url>${maven.pvt.repo.url}/snapshots/</url>
 			<releases>
 				<enabled>false</enabled>
 			</releases>
@@ -54,7 +55,7 @@
 		<pluginRepository>
 			<id>internal</id>
 			<name>Archiva Managed Internal Repository</name>
-			<url>https://archiva.zoostar.net/repository/internal/</url>
+			<url>${maven.pvt.repo.url}/internal/</url>
 			<releases>
 				<enabled>true</enabled>
 			</releases>
@@ -66,11 +67,11 @@
 	<distributionManagement>
 		<snapshotRepository>
 			<id>snapshots</id>
-			<url>https://archiva.zoostar.net/repository/snapshots/</url>
+			<url>${maven.pvt.repo.url}/snapshots/</url>
 		</snapshotRepository>
 		<repository>
 			<id>internal</id>
-			<url>https://archiva.zoostar.net/repository/internal/</url>
+			<url>${maven.pvt.repo.url}/internal/</url>
 		</repository>
 	</distributionManagement>
 	<dependencies>
