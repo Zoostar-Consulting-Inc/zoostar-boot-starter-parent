@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>net.zoostar.boot</groupId>
 	<artifactId>zoostar-boot-starter-parent</artifactId>
-	<version>2.2.0</version>
+	<version>2.3.0</version>
 	<packaging>pom</packaging>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -14,13 +14,14 @@
 	</parent>
 	<properties>
 		<java.version>17</java.version>
+		<maven.pvt.repo.url>http://archiva.zoostar.net/repository</maven.pvt.repo.url>
 	</properties>
 	<repositories>
 		<repository>
 			<id>snapshots</id>
 			<name>Archiva Managed Snapshot Repository</name>
-			<url>http://192.168.86.10:8080/repository/snapshots/</url>
-			<releases>
+			<url>${maven.pvt.repo.url}/snapshots/</url>
+		<releases>
 				<enabled>false</enabled>
 			</releases>
 			<snapshots>
@@ -30,7 +31,7 @@
 		<repository>
 			<id>internal</id>
 			<name>Archiva Managed Internal Repository</name>
-			<url>http://192.168.86.10:8080/repository/internal/</url>
+			<url>${maven.pvt.repo.url}/internal/</url>
 			<releases>
 				<enabled>true</enabled>
 			</releases>
@@ -43,7 +44,7 @@
 		<pluginRepository>
 			<id>snapshots</id>
 			<name>Archiva Managed Snapshot Repository</name>
-			<url>http://192.168.86.10:8080/repository/snapshots/</url>
+			<url>${maven.pvt.repo.url}/snapshots/</url>
 			<releases>
 				<enabled>false</enabled>
 			</releases>
@@ -54,7 +55,7 @@
 		<pluginRepository>
 			<id>internal</id>
 			<name>Archiva Managed Internal Repository</name>
-			<url>http://192.168.86.10:8080/repository/internal/</url>
+			<url>${maven.pvt.repo.url}/internal/</url>
 			<releases>
 				<enabled>true</enabled>
 			</releases>
@@ -66,11 +67,11 @@
 	<distributionManagement>
 		<snapshotRepository>
 			<id>snapshots</id>
-			<url>http://192.168.86.10:8080/repository/snapshots/</url>
+			<url>${maven.pvt.repo.url}/snapshots/</url>
 		</snapshotRepository>
 		<repository>
 			<id>internal</id>
-			<url>http://192.168.86.10:8080/repository/internal/</url>
+			<url>${maven.pvt.repo.url}/internal/</url>
 		</repository>
 	</distributionManagement>
 	<dependencies>
@@ -88,7 +89,7 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-	</dependencies>
+ </dependencies>
 	<build>
 		<resources>
 			<resource>
