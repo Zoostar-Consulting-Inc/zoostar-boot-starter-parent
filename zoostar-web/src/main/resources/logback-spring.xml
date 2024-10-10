@@ -13,7 +13,8 @@
 
 	<appender name="AppRollingFile"
 		class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file>${LOGS}/@project.build.finalName@.log</file>
+<!-- 		<file>${LOGS}/@project.build.finalName@.log</file> -->
+		<file>logs/zoostar-web.log</file>
 		<rollingPolicy
 			class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
 			<!-- rollover daily -->
@@ -33,15 +34,15 @@
 		<appender-ref ref="AppRollingFile" />
 	</root>
 
-	<logger level="debug" additivity="false" name="org.springframework.jdbc.core">
+	<logger level="debug" additivity="false" name="net.zoostar">
 		<appender-ref ref="Console" />
 		<appender-ref ref="AppRollingFile" />
 	</logger>
 
-	<logger level="trace" additivity="false"
-		name="org.springframework.data.elasticsearch.client.WIRE">
+	<logger level="debug" additivity="false" name="org.springframework.web">
 		<appender-ref ref="Console" />
 		<appender-ref ref="AppRollingFile" />
 	</logger>
+
 
 </configuration>

@@ -33,11 +33,6 @@
 		<appender-ref ref="AppRollingFile" />
 	</root>
 
-	<logger level="debug" additivity="false" name="gov.census">
-		<appender-ref ref="Console" />
-		<appender-ref ref="AppRollingFile" />
-	</logger>
-
 	<logger level="debug" additivity="false" name="org.springframework.jdbc.core">
 		<appender-ref ref="Console" />
 		<appender-ref ref="AppRollingFile" />
